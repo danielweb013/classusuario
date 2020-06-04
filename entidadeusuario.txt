@@ -1,0 +1,174 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user", options={"collate"="utf8_unicode_ci", "charset"="utf8 ", "engine"="InnoDB", "comment"="Irá conter os dados dos usuários"}) 
+ * @UniqueEntity(fields="user_login", message="Este login esta em uso")
+ * @UniqueEntity(fields="user_email", message="Este e-mail esta em uso")
+ **/
+
+
+
+class User
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=false, name="user_login", unique=true, options={"comment":"Irá conter o login do usuário"})
+     */
+    private $user_login;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, name="user_nome", options={"comment":"Irá conter o nome do usuário"})
+     */
+    private $user_nome;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, name="user_sobre_nome", options={"comment":"Irá conter o sobrenome do usuário"})
+     */
+    private $user_sobre_nome;    
+    
+
+    /**
+     * @ORM\Column(type="string", length=255,  nullable=false, name="user_email", unique=true, options={"comment":"Irá conter o email do usuário"})
+     */
+    private $user_email;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=false, name="user_senha", options={"comment":"Irá conter a senha do usuário"})
+     */
+    private $user_senha;
+
+    /**
+     * @ORM\Column(type="date", nullable=false, name="user_nascimento", options={"comment":"Irá conter a data de nascimento do usuário"})
+     */
+    private $user_nascimento;
+
+    /**
+     * @ORM\Column(type="date", nullable=false,  name="user_dt_cadastro", options={"comment":"Irá conter a data de cadastro do usuário"})
+     */
+    private $user_dt_cadastro;
+
+    /**
+     * @ORM\Column(type="smallint", name="user_nivel", nullable=false, options={"unsigned":true, "default":1, "comment":"Irá conter o nivel do usuário, padrão 1, administrador e root acima de 1"})
+    */
+    private $user_nivel;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUserLogin(): ?string
+    {
+        return $this->user_login;
+    }
+
+    public function setUserLogin(string $user_login): self
+    {
+        $this->user_login = $user_login;
+
+        return $this;
+    }
+
+    public function getUserNome(): ?string
+    {
+        return $this->user_nome;
+    }
+
+    public function setUserNome(string $user_nome): self
+    {
+        $this->user_nome = $user_nome;
+
+        return $this;
+    }
+
+    public function getUserEmail(): ?string
+    {
+        return $this->user_email;
+    }
+
+    public function setUserEmail(string $user_email): self
+    {
+        $this->user_email = $user_email;
+
+        return $this;
+    }
+
+    public function getUserSenha(): ?string
+    {
+        return $this->user_senha;
+    }
+
+    public function setUserSenha(string $user_senha): self
+    {
+        $this->user_senha = $user_senha;
+
+        return $this;
+    }
+
+    public function getUserNascimento(): ?\DateTimeInterface
+    {
+        return $this->user_nascimento;
+    }
+
+    public function setUserNascimento(\DateTimeInterface $user_nascimento): self
+    {
+        $this->user_nascimento = $user_nascimento;
+
+        return $this;
+    }
+
+    public function getUserDtCadastro(): ?\DateTimeInterface
+    {
+        return $this->user_dt_cadastro;
+    }
+
+    public function setUserDtCadastro(\DateTimeInterface $user_dt_cadastro): self
+    {
+        $this->user_dt_cadastro = $user_dt_cadastro;
+
+        return $this;
+    }
+
+    public function getUserNivel(): ?int
+    {
+        return $this->user_nivel;
+    }
+
+    public function setUserNivel(int $user_nivel): self
+    {
+        $this->user_nivel = $user_nivel;
+
+        return $this;
+    }
+    
+    
+    public function getUserSobrenome(): ?string
+    {
+        return $this->user_sobre_nome;
+    }
+
+    public function setUserSobrenome(string $user_sobrenome): self
+    {
+        $this->user_sobre_nome = $user_sobrenome;
+
+        return $this;
+    }
+
+
+    
+    
+}
